@@ -34,6 +34,7 @@ playwright-ts-framework/
 ├── package.json          → Project metadata & scripts
 └── README.md
 
+
 🔧 Tools & Libraries
 
 Tool	                Purpose

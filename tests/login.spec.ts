@@ -1,8 +1,11 @@
 import {test, expect} from '../fixtures/baseTest';
+import { LoginPage } from '../pages/LoginPage.page';
 
 test('Login to app with valid credentials', async ({page}) => {
 
-    await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewSystemUsers');
+    const loginPage = new LoginPage(page);
+    const header = await loginPage.getHeaderText();
 
+    expect(header).toContain('Dashboard');
 
 })

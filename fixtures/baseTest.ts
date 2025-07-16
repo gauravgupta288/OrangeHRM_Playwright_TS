@@ -1,5 +1,7 @@
 // fixtures/baseTest.ts
 import { test as baseTest, BrowserContext, Page } from '@playwright/test';
+import { LoginPage } from '../pages/LoginPage.page';
+import * as utils from '../utils/getUrl';
 
 type MyFixtures = {
   page: Page;
@@ -16,12 +18,11 @@ export const test = baseTest.extend<MyFixtures>({
   page: async ({ context }, use) => {
     const page = await context.newPage();
 
+    const env = process.env.ENV || 'prod'; // Default to 'dev' if ENV is not set
+    await page.goto(utils.getUrl(env));
     // ✅ Login once
-    await page.goto('https://opensource-demo.orangehrmlive.com/');
-    await page.fill('[name=username]', 'Admin');
-    await page.fill('[name=password]', 'admin123');
-    await page.click('[type=submit]');
-    await page.waitForURL('**/dashboard');
+    const loginPage = new LoginPage(page);
+    await loginPage.login('Admin', 'admin123');
 
     await use(page);
     await page.close();

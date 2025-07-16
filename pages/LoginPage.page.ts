@@ -4,10 +4,11 @@ import { BasePage } from './BasePage.page';
 export class LoginPage extends BasePage{
 
   // Selectors
-  private usernameInput = '#username';   // Change selectors as per your app
-  private passwordInput = '#password';
-  private loginButton = '#loginBtn';
+  private usernameInput = '[name=username]';   // Change selectors as per your app
+  private passwordInput = '[name=password]';
+  private loginButton = '[type=submit]';
   private errorMessage = '.error-msg';
+ 
 
   constructor(page: Page) {
     super(page);

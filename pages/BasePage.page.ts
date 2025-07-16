@@ -4,7 +4,7 @@ export class BasePage {
   protected page: Page;
 
   // Common selectors (example)
-  protected header = 'header';
+  protected headerTitle = '.oxd-topbar-header-breadcrumb-module'
   protected footer = 'footer';
   protected logoutButton = '#logout';
 
@@ -17,7 +17,7 @@ export class BasePage {
   }
 
   async getHeaderText() {
-    return this.page.textContent(this.header);
+    return this.page.textContent(this.headerTitle);
   }
 
   // Add more shared methods here

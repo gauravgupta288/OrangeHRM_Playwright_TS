@@ -1,6 +1,8 @@
 import { Page } from '@playwright/test';
 
-export class BasePage {
+export abstract class BasePage {
+
+  abstract waitForPageLoad(): Promise<string>;
   protected page: Page;
 
   // Common selectors (example)

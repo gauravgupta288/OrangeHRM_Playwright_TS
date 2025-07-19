@@ -2,7 +2,7 @@ import { Page } from '@playwright/test';
 import { BasePage } from './BasePage.page';
 
 export class LoginPage extends BasePage {
-  
+
   // Selectors
   private usernameInput = '[name=username]';   // Change selectors as per your app
   private passwordInput = '[name=password]';
@@ -14,11 +14,18 @@ export class LoginPage extends BasePage {
   }
 
   async waitForPageLoad(): Promise<string> {
-    await this.page.waitForSelector(this.usernameInput, { state: 'visible' });
-    await this.page.waitForSelector(this.passwordInput, { state: 'visible' });
-    await this.page.waitForSelector(this.loginButton, { state: 'visible' });
-    return 'Login page loaded';
+    try {
+      console.log('Waiting for login page elements to be visible...');
+      await this.page.waitForSelector(this.usernameInput, this.options);
+      await this.page.waitForSelector(this.passwordInput, this.options);
+      await this.page.waitForSelector(this.loginButton, this.options);
+      console.log('Login page successfully loaded.');
+      return 'Login page loaded';
+    } catch (error) {
+      throw new Error(`Login page did not load correctly: ${error}`);
+    }
   }
+
 
   async navigate(url: string) {
     await this.page.goto(url);
@@ -44,7 +51,7 @@ export class LoginPage extends BasePage {
   }
 
   async getErrorMessage() {
-    await this.page.waitForSelector(this.errorMessage, { state: 'visible', timeout: 3000 }).catch(() => {});
+    await this.page.waitForSelector(this.errorMessage, { state: 'visible', timeout: 3000 }).catch(() => { });
     return await this.page.textContent(this.errorMessage);
   }
 }

@@ -2,6 +2,10 @@ import { Page } from '@playwright/test';
 
 export abstract class BasePage {
 
+  protected options = {
+    timeout: 30000,
+    state: 'visible' as const, // 👈 fixes the type error
+  };
   abstract waitForPageLoad(): Promise<string>;
   protected page: Page;
 

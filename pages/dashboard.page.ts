@@ -30,7 +30,10 @@ export class DashboardPage extends BasePage {
 
     async clickOnQuickLaunch(menu: number) {
 
+        await this.page.waitForSelector(this.totalLoggedInHours, { state: 'visible' });
+        await this.page.waitForSelector('.oxd-icon-button.orangehrm-quick-launch-icon');
         const elements = await this.page.$$('.oxd-icon-button.orangehrm-quick-launch-icon');
+
         switch (menu) {
             case 1:
                 await elements[0].click();

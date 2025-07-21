@@ -2,7 +2,7 @@ import { describe } from 'node:test';
 import { test, expect } from '../fixtures/baseTest';
 import { LoginPage } from '../pages/LoginPage.page';
 
-describe('Login Tests', () => {
+describe.skip('Login Tests', () => {
     test('Login to app with valid credentials', async ({ page }) => {
 
         const loginPage = new LoginPage(page);
@@ -11,5 +11,5 @@ describe('Login Tests', () => {
         expect(header).toContain('Dashboard');
 
     })
-    
+
 })

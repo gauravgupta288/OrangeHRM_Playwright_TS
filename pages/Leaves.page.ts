@@ -13,7 +13,8 @@ export class LeavePage extends BasePage {
   }
 
   async assignLeave(): Promise<String> {
-    try {
+    
+    try { 
       await this.page.getByRole('textbox', { name: 'Type for hints...' }).click();
       await this.page.getByRole('textbox', { name: 'Type for hints...' }).click();
       await this.page.getByRole('textbox', { name: 'Type for hints...' }).fill('John');

@@ -1,5 +1,5 @@
 import { BasePage } from "./BasePage.page";
-import { Page } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 
 export class LeavePage extends BasePage {
 
